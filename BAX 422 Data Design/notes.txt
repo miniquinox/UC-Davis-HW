@@ -1,0 +1,59 @@
+sdgfv
+scxvxc
+xcv
+xcvcxvawq
+sddsadf
+
+02/28 1998
+
+1234
+-245
+
+===================================================================
+
+Searching with regex:
+ 
+abc     -> Contains "abc"
+
+..      -> Contains any two characters
+
+[abc]   -> Contains any single "a", "b", or "c"
+
+[abc][abc]    -> Contains any "a", "b", or "c" followed by any "a", "b", or "c"
+
+[abc]..       -> Contains any "a", "b", or "c" followed by two characters
+
+[0123456789][0123456789]/[0123456789][0123456789] [0123456789][0123456789][0123456789][0123456789]
+    -> This one find date in format "02/28 1998"
+
+[0-9][0-9]/[0-9][0-9] [0-9][0-9][0-9][0-9]
+    -> Same as earlier but simpler. This one find date in format "02/28 1998"
+
+-[0-9][0-9]?    -> Contains a negative number with one or two digits
+    -> Add ? AFTER a character to make it optional
+
+a.{4}    -> Contains any four characters after an "a"
+
+b{3,7}   -> Contains between three and seven "b"s
+
+[0-9]+   -> Contains one or more digits
+
+[0-9]*   -> Contains zero or more digits
+
+([0-9]{2})/([0-9]{2}) ([0-9]{4}|[0-9]{2})    -> Search format like "02/28 1998" or "02/28/98"
+$3-$1-$2    -> Replace with third group, then first group, then second group
+Returns "1998-02-28"
+
+===================================================================
+
+Emails:
+
+"Lenny", "Hamilton", "Male", "l.hamilton@randemail.com", "02/28/1998", "1234-5678-9012-3456"
+"Lenny", "Hamilton", "Male", "l.hamilton@randemail.com", "02/28/1998", "1234-5678-9012-3456"
+"Lenny", "Hamilton", "Male", "l.hamilton@randemail.com", "02/28/1998", "1234-5678-9012-3456"
+
+[-._0-9a-z]*@[-._0-9a-z]+
+    -> Finds emails. Explanation: 
+        Any number of characters in the set [-._0-9a-z] 
+        followed by @ followed by any number of characters in the set [-._0-9a-z]
+
